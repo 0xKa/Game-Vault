@@ -1,12 +1,14 @@
 import { HStack, Image, Text } from "@chakra-ui/react";
 import BlackLogo from "../assets/game-vault-black-icon.svg";
 import WhiteLogo from "../assets/game-vault-white-icon.svg";
-import { useColorMode } from "./ui/color-mode";
+import { ColorModeButton, useColorMode } from "./ui/color-mode";
 
 export const NavBar = () => {
   const { colorMode } = useColorMode();
 
   const renderLogo = () => {
+    console.log("All env vars:", import.meta.env); // Will show what's available
+
     return (
       <>
         {colorMode === "dark" ? (
@@ -19,9 +21,10 @@ export const NavBar = () => {
   };
 
   return (
-    <HStack>
+    <HStack justifyContent={"space-between"}>
       {renderLogo()}
       <Text>Game Vault</Text>
+      <ColorModeButton size="xl" p={7} />
     </HStack>
   );
 };

@@ -1,7 +1,7 @@
 import { Button, Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
-import { ColorModeButton, useColorMode } from "./components/ui/color-mode";
+import GameGrid from "./components/GameGrid";
 
 function App() {
   return (
@@ -24,10 +24,7 @@ function App() {
       </GridItem>
 
       <GridItem area={"main"} bg="green.800">
-        Main
-        <br />
-        <br />
-        <ColorModeButton />
+        <GameGrid />
       </GridItem>
     </Grid>
   );
