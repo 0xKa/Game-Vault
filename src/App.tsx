@@ -1,4 +1,4 @@
-import { Button, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
@@ -15,15 +15,11 @@ function App() {
         <NavBar />
       </GridItem>
 
-      <GridItem
-        area={"aside"}
-        bg="blue.800"
-        display={{ base: "none", lg: "block" }}
-      >
+      <GridItem area={"aside"} display={{ base: "none", lg: "block" }}>
         Aside
       </GridItem>
 
-      <GridItem area={"main"} bg="green.800">
+      <GridItem area={"main"}>
         <GameGrid />
       </GridItem>
     </Grid>

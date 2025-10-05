@@ -7,8 +7,6 @@ export const NavBar = () => {
   const { colorMode } = useColorMode();
 
   const renderLogo = () => {
-    console.log("All env vars:", import.meta.env); // Will show what's available
-
     return (
       <>
         {colorMode === "dark" ? (
