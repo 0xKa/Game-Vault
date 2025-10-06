@@ -4,7 +4,12 @@ import GameCard from "./GameCard";
 
 const GameGrid = () => {
   const { games, error } = useGames();
-  console.log(games);
+
+  console.log("Games length:", games.length);
+  if (games.length > 0) {
+    console.log("First game:", games[0]);
+    console.log("Parent platforms:", games[0].parent_platforms);
+  }
 
   return (
     <div>
