@@ -1,5 +1,5 @@
 import { type Platform } from "@/types/platform";
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 
 import {
   FaPlaystation,
@@ -9,9 +9,9 @@ import {
   FaApple,
   FaAndroid,
 } from "react-icons/fa";
-import { SiMacos } from "react-icons/si";
 import { BsNintendoSwitch, BsGlobe } from "react-icons/bs";
 import type { IconType } from "react-icons";
+import { MdPhoneIphone } from "react-icons/md";
 
 interface PlatformIconListProps {
   platforms: Platform[];
@@ -23,15 +23,15 @@ const platformIcons: Partial<Record<string, IconType>> = {
   xbox: FaXbox,
   linux: FaLinux,
   android: FaAndroid,
-  ios: FaApple,
-  mac: SiMacos,
+  ios: MdPhoneIphone,
+  mac: FaApple,
   nintendo: BsNintendoSwitch,
   web: BsGlobe,
 };
 
 const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
   return (
-    <HStack gap={3} padding="10px 15px 20px">
+    <HStack gap={3} padding="10px 0 20px">
       {platforms.map((platform) => (
         <Icon
           size="lg"
