@@ -8,10 +8,10 @@ import {
 
 const GameCardSkeleton = () => {
   return (
-    <Card.Root width="400px">
+    <Card.Root>
       <Skeleton height="220px" variant="shine" />
       <Card.Title m={4} mb={2}>
-        <SkeletonText mr="10px" />
+        <SkeletonText />
       </Card.Title>
       <Card.Footer px={0} py={0}>
         <HStack justify="left" px={4} my={2} gap={5}>
