@@ -4,7 +4,6 @@ import { HStack, Icon } from "@chakra-ui/react";
 import {
   FaPlaystation,
   FaWindows,
-  FaLinux,
   FaXbox,
   FaApple,
   FaAndroid,
@@ -12,6 +11,7 @@ import {
 import { BsNintendoSwitch, BsGlobe } from "react-icons/bs";
 import type { IconType } from "react-icons";
 import { MdPhoneIphone } from "react-icons/md";
+import { VscTerminalLinux } from "react-icons/vsc";
 
 interface PlatformIconListProps {
   platforms: Platform[];
@@ -21,7 +21,7 @@ const platformIcons: Partial<Record<string, IconType>> = {
   pc: FaWindows,
   playstation: FaPlaystation,
   xbox: FaXbox,
-  linux: FaLinux,
+  linux: VscTerminalLinux,
   android: FaAndroid,
   ios: MdPhoneIphone,
   mac: FaApple,

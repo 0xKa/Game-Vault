@@ -12,11 +12,12 @@ const GameGrid = () => {
     <div>
       {error && <Text className="error">{error}</Text>}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8} padding={10}>
-        {gridSkeletons.map((skeleton) => (
-          <GameCardContainer key={skeleton}>
-            <GameCardSkeleton />
-          </GameCardContainer>
-        ))}
+        {isLoading &&
+          gridSkeletons.map((skeleton) => (
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />
+            </GameCardContainer>
+          ))}
 
         {games.map((game) => (
           <GameCardContainer key={game.id}>
