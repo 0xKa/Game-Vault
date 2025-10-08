@@ -1,4 +1,4 @@
-import { type Platform } from "@/types/platform";
+import { type Platform } from "@/types";
 import { HStack, Icon } from "@chakra-ui/react";
 
 import {

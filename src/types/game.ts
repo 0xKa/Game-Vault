@@ -1,4 +1,4 @@
-import type { Platform } from "./platform";
+import type { Platform } from "@/types";
 
 export interface FetchGamesResponse {
   count: number;

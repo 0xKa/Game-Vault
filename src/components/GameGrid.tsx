@@ -3,6 +3,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import GenreList from "./GenreList";
 
 const GameGrid = () => {
   const { games, error, isLoading } = useGames();
@@ -10,6 +11,7 @@ const GameGrid = () => {
 
   return (
     <div>
+      <GenreList />
       {error && <Text className="error">{error}</Text>}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8} padding={10}>
         {isLoading &&
