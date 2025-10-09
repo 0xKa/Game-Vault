@@ -1,5 +1,5 @@
 import { type Platform } from "@/types";
-import { HStack, Icon } from "@chakra-ui/react";
+import { HStack, Icon, Box } from "@chakra-ui/react";
 
 import {
   FaPlaystation,
@@ -15,6 +15,7 @@ import { VscTerminalLinux } from "react-icons/vsc";
 
 interface PlatformIconListProps {
   platforms: Platform[];
+  maxVisible?: number;
 }
 
 const platformIcons: Partial<Record<string, IconType>> = {
@@ -29,17 +30,48 @@ const platformIcons: Partial<Record<string, IconType>> = {
   web: BsGlobe,
 };
 
-const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
+const PlatformIconList = ({
+  platforms,
+  maxVisible = 10,
+}: PlatformIconListProps) => {
+  let visible = platforms.slice(0, maxVisible);
+  const remaining = Math.max(platforms.length - visible.length, 0);
+
+  if (remaining == 1 && visible.length > 0) {
+    visible = platforms.slice(0, maxVisible + 1);
+  }
+
   return (
-    <HStack gap={3} padding="10px 0 20px">
-      {platforms.map((platform) => (
-        <Icon
-          size="md"
-          color="gray.600"
-          as={platformIcons[platform.slug]}
-          key={platform.id}
-        />
-      ))}
+    <HStack gap={2} mb={3} title={`${platforms.length} platforms`}>
+      {visible.map((platform) => {
+        const IconComp = platformIcons[platform.slug];
+        if (!IconComp) return null;
+        return (
+          <Icon
+            key={platform.id}
+            as={IconComp}
+            boxSize={5}
+            color="gray.600"
+            aria-label={platform.name}
+          />
+        );
+      })}
+      {remaining > 1 && (
+        <Box
+          as="span"
+          px={2}
+          py="2px"
+          fontSize="xs"
+          lineHeight="1"
+          borderRadius="full"
+          border="1px solid"
+          borderColor="gray.500"
+          color="gray.400"
+          title={`${remaining} more platforms`}
+        >
+          +{remaining}
+        </Box>
+      )}
     </HStack>
   );
 };
