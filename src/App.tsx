@@ -31,7 +31,10 @@ function App() {
       </GridItem>
 
       <GridItem area={"main"}>
-        <GameGrid selectedGenre={selectedGenre} />
+        <GameGrid
+          key={selectedGenre?.id ?? "all"}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
     </Grid>
   );
