@@ -6,9 +6,10 @@ import type { Genre } from "@/types";
 
 interface GenreListProps {
   onSelectGenre?: (genre: Genre) => void;
+  selectedGenre?: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: GenreListProps) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
   const { data: genres, error, isLoading } = useGenres();
 
   if (error) return <ErrorMessage message="Error loading genres!" />;
@@ -36,8 +37,11 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
             />
             <Link
               onClick={() => onSelectGenre?.(genre)}
-              textDecorationColor="red.500"
+              textDecorationColor="red.700"
               fontSize="lg"
+              // fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              colorPalette={genre.id === selectedGenre?.id ? "red" : "gray"}
+              variant={genre.id === selectedGenre?.id ? "underline" : "plain"}
             >
               {genre.name}
             </Link>
