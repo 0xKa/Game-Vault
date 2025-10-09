@@ -1,5 +1,5 @@
 import type { Game } from "@/types";
-import { Box, Card, HStack, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import MetaCriticScore from "./MetaCriticScore";
 import getCroppedImageUrl from "@/services/imageCropUrl";
