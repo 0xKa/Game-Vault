@@ -5,10 +5,18 @@ interface MetaCriticScoreProps {
 }
 
 const MetaCriticScore = ({ score }: MetaCriticScoreProps) => {
-  let color = score > 75 ? "green" : score > 50 ? "yellow" : "red";
+  const getColorPalette = (score: number) => {
+    if (score > 75) return "green";
+    if (score > 50) return "yellow";
+    return "red";
+  };
+
+  const colorPalette = score == null ? "gray" : getColorPalette(score);
+  const displayScore = score ?? "N/A";
+
   return (
-    <Badge fontSize="15px" size="lg" px="4" mb="3" colorPalette={color}>
-      {score}
+    <Badge fontSize="15px" size="lg" px="4" mb="3" colorPalette={colorPalette}>
+      {displayScore}
     </Badge>
   );
 };
