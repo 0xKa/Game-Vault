@@ -2,8 +2,13 @@ import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/imageCropUrl";
 import { HStack, List, Image, Spinner, Link } from "@chakra-ui/react";
 import ErrorMessage from "./ErrorMessage";
+import type { Genre } from "@/types";
 
-const GenreList = () => {
+interface GenreListProps {
+  onSelectGenre?: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: GenreListProps) => {
   const { data: genres, error, isLoading } = useGenres();
 
   if (error) return <ErrorMessage message="Error loading genres!" />;
@@ -29,7 +34,11 @@ const GenreList = () => {
               boxSize="32px"
               borderRadius={8}
             />
-            <Link textDecorationColor="red.500" fontSize="lg">
+            <Link
+              onClick={() => onSelectGenre?.(genre)}
+              textDecorationColor="red.500"
+              fontSize="lg"
+            >
               {genre.name}
             </Link>
           </HStack>
