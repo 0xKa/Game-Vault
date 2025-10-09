@@ -17,7 +17,12 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   return (
     <div>
       {error && <ErrorMessage message="Error loading games!" />}
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8} padding={10}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
+        gap={8}
+        padding={10}
+        alignItems="stretch"
+      >
         {isLoading
           ? gridSkeletons.map((i) => (
               <GameCardContainer key={i}>

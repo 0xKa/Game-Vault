@@ -1,5 +1,5 @@
 import type { Game } from "@/types";
-import { Card, HStack, Image } from "@chakra-ui/react";
+import { Box, Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import MetaCriticScore from "./MetaCriticScore";
 import getCroppedImageUrl from "@/services/imageCropUrl";
@@ -10,13 +10,24 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card.Root>
-      <Image src={getCroppedImageUrl(game.background_image, 600, 400)} />
-      <Card.Title m={4} fontSize="2xl">
-        {game.name}
-      </Card.Title>
+    <Card.Root display="flex" flexDir="column" h="100%" shadow="lg">
+      <Box borderTopRadius={5} overflow="hidden">
+        <Image
+          src={getCroppedImageUrl(game.background_image, 600, 400)}
+          alt={game.name}
+          objectFit="cover"
+          height={200}
+          width="100%"
+        />
+      </Box>
 
-      <Card.Footer px={0} py={0}>
+      <Box flex="1" display="flex" alignItems="center" px={3} py={5}>
+        <Card.Title fontSize="2xl" title={game.name}>
+          {game.name}
+        </Card.Title>
+      </Box>
+
+      <Card.Footer mt="auto" px={0} py={0}>
         <HStack justify="space-between" w="100%" px={4} mr={0}>
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
