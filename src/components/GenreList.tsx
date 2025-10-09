@@ -1,18 +1,12 @@
 import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/imageCropUrl";
-import { HStack, List, Image, Text, Spinner, Box } from "@chakra-ui/react";
-import { BiErrorAlt } from "react-icons/bi";
+import { HStack, List, Image, Spinner, Link } from "@chakra-ui/react";
+import ErrorMessage from "./ErrorMessage";
 
 const GenreList = () => {
   const { data: genres, error, isLoading } = useGenres();
 
-  if (error)
-    return (
-      <Box padding={5}>
-        <BiErrorAlt color="#aa1616ff" size={40} />
-        <Text color="#aa1616ff">Error loading genres!</Text>
-      </Box>
-    );
+  if (error) return <ErrorMessage message="Error loading genres!" />;
 
   if (isLoading)
     return (
@@ -35,7 +29,9 @@ const GenreList = () => {
               boxSize="32px"
               borderRadius={8}
             />
-            <Text fontSize="lg">{genre.name}</Text>
+            <Link textDecorationColor="red.500" fontSize="lg">
+              {genre.name}
+            </Link>
           </HStack>
         </List.Item>
       ))}

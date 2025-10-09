@@ -1,8 +1,9 @@
 import useGames from "@/hooks/useGames";
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import ErrorMessage from "./ErrorMessage";
 
 const GameGrid = () => {
   const { data: games, error, isLoading } = useGames();
@@ -10,7 +11,7 @@ const GameGrid = () => {
 
   return (
     <div>
-      {error && <Text className="error">{error}</Text>}
+      {error && <ErrorMessage message="Error loading games!" />}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8} padding={10}>
         {isLoading &&
           gridSkeletons.map((skeleton) => (
