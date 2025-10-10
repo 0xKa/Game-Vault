@@ -1,7 +1,13 @@
 import usePlatforms from "@/hooks/usePlatforms";
+import type { Platform } from "@/types";
 import { Button, createListCollection, Portal, Select } from "@chakra-ui/react";
 
-const PlatformSelector = () => {
+interface PlatformSelectorProps {
+  selectedPlatform?: Platform | null;
+  onSelectPlatform: (platform: Platform | null) => void;
+}
+
+const PlatformSelector = ({ onSelectPlatform }: PlatformSelectorProps) => {
   const { data: platforms, error, isLoading } = usePlatforms();
 
   if (isLoading)
@@ -22,6 +28,7 @@ const PlatformSelector = () => {
 
   return (
     <Select.Root
+      color="purple.500"
       disabled={!!error || !platforms}
       collection={platformsList}
       size="sm"
@@ -38,7 +45,10 @@ const PlatformSelector = () => {
         </Select.Trigger>
 
         <Select.IndicatorGroup>
-          <Select.ClearTrigger />
+          <Select.ClearTrigger
+            onClick={() => onSelectPlatform(null)}
+            cursor="pointer"
+          />
           <Select.Indicator />
         </Select.IndicatorGroup>
       </Select.Control>
@@ -47,7 +57,11 @@ const PlatformSelector = () => {
         <Select.Positioner>
           <Select.Content>
             {platformsList.items.map((platform) => (
-              <Select.Item item={platform} key={platform.value}>
+              <Select.Item
+                item={platform}
+                key={platform.value}
+                onClick={() => onSelectPlatform(platform.data)}
+              >
                 {platform.label}
                 <Select.ItemIndicator />
               </Select.Item>
