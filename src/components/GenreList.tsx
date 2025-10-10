@@ -11,7 +11,8 @@ interface GenreListProps {
 
 const LINK_SELECTED_STYLE = {
   fontWeight: "bold" as const,
-  colorPalette: "red" as const,
+  colorPalette: "purple" as const,
+  textDecorationColor: "purple" as const,
   variant: "underline" as const,
 };
 const LINK_DEFAULT_STYLE = {
@@ -41,7 +42,6 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
         <HStack {...ROW_PROPS}>
           <Link
             onClick={() => onSelectGenre?.(null)}
-            textDecorationColor="red.700"
             fontSize="lg"
             {...(selectedId === null
               ? LINK_SELECTED_STYLE
@@ -65,7 +65,6 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
               />
               <Link
                 onClick={() => onSelectGenre?.(genre)}
-                textDecorationColor="red.700"
                 fontSize="lg"
                 {...(isSelected ? LINK_SELECTED_STYLE : LINK_DEFAULT_STYLE)}
               >

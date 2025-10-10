@@ -6,7 +6,7 @@ interface MetaCriticScoreProps {
 
 const MetaCriticScore = ({ score }: MetaCriticScoreProps) => {
   const getColorPalette = (score: number) => {
-    if (score > 75) return "green";
+    if (score > 75) return "purple";
     if (score > 50) return "yellow";
     return "red";
   };
