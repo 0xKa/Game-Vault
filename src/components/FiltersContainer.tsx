@@ -7,7 +7,7 @@ interface FiltersContainerProps {
 
 const FiltersContainer = ({ children }: FiltersContainerProps) => {
   return (
-    <HStack width="50vw" mb={-3} ml={10}>
+    <HStack width="25vw" mb={-3} ml={10}>
       {children}
     </HStack>
   );
