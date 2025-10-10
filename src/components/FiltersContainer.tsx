@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import React from "react";
 
 interface FiltersContainerProps {
@@ -7,9 +7,15 @@ interface FiltersContainerProps {
 
 const FiltersContainer = ({ children }: FiltersContainerProps) => {
   return (
-    <HStack width="25vw" mb={-3} ml={10}>
+    <Stack
+      direction={{ base: "column", lg: "row" }} // Box-like on mobile, HStack-like on desktop
+      width="50vw"
+      gap={3}
+      mb={-3}
+      ml={10}
+    >
       {children}
-    </HStack>
+    </Stack>
   );
 };
 
