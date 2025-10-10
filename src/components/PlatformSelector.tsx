@@ -32,9 +32,6 @@ const PlatformSelector = ({ onSelectPlatform }: PlatformSelectorProps) => {
       disabled={!!error || !platforms}
       collection={platformsList}
       size="sm"
-      width="25%"
-      ml={10}
-      mb={-3}
     >
       <Select.HiddenSelect />
       {/* <Select.Label>Select Platform</Select.Label> */}

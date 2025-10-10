@@ -6,6 +6,7 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import type { Platform, Genre } from "./types";
 import PlatformSelector from "./components/PlatformSelector";
+import FiltersContainer from "./components/FiltersContainer";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -38,12 +39,20 @@ function App() {
       </GridItem>
 
       <GridItem area={"main"}>
-        <PlatformSelector
-          selectedPlatform={gameQuery.platform}
-          onSelectPlatform={(platform) =>
-            setGameQuery({ ...gameQuery, platform })
-          }
-        />
+        <FiltersContainer>
+          <PlatformSelector
+            selectedPlatform={gameQuery.platform}
+            onSelectPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+          />
+          <PlatformSelector
+            selectedPlatform={gameQuery.platform}
+            onSelectPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+          />
+        </FiltersContainer>
         <GameGrid key={gameQuery.genre?.id ?? "all"} gameQuery={gameQuery} />
       </GridItem>
     </Grid>
