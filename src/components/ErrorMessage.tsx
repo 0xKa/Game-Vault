@@ -7,7 +7,7 @@ interface Props {
 
 const ErrorMessage = ({ message }: Props) => {
   return (
-    <Box padding={5}>
+    <Box padding={5} ml={5} mt={5}>
       <HStack>
         <TbFileSad color="#DC3545" size={40} />
         <Text color="#DC3545">{message || "An error occurred!"}</Text>
