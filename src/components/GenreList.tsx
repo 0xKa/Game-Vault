@@ -10,15 +10,18 @@ interface GenreListProps {
 }
 
 const LINK_SELECTED_STYLE = {
+  fontFamily: "Kumar One" as const,
   fontWeight: "bold" as const,
   colorPalette: "purple" as const,
   textDecorationColor: "purple" as const,
   variant: "underline" as const,
 };
 const LINK_DEFAULT_STYLE = {
+  fontFamily: "Kumar One" as const,
   fontWeight: "normal" as const,
   colorPalette: "gray" as const,
   variant: "plain" as const,
+  fontSize: "sm" as const,
 };
 const ROW_PROPS = { gap: 3 as const, px: 3 as const, py: 2 as const };
 
