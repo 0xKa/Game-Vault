@@ -11,9 +11,9 @@ export const NavBar = () => {
     return (
       <>
         {colorMode === "dark" ? (
-          <Image src={PurpleLogo} alt="Game Vault Icon" boxSize="60px" />
+          <Image src={PurpleLogo} alt="Game Vault Icon" boxSize="55px" />
         ) : (
-          <Image src={BlackLogo} alt="Game Vault Icon" boxSize="60px" />
+          <Image src={BlackLogo} alt="Game Vault Icon" boxSize="55px" />
         )}
       </>
     );
@@ -21,14 +21,27 @@ export const NavBar = () => {
 
   return (
     <HStack padding={2} pb={7}>
-      <Box pr={{ base: 5, md: 0 }} cursor="grabbing">
+      <Box
+        mt={-2}
+        mr={4}
+        boxSize="60px"
+        display="grid"
+        placeItems="center"
+        cursor="grabbing"
+        border="1px solid"
+        borderRadius={10}
+        color="purple.700"
+      >
         {renderLogo()}
       </Box>
       <Text
-        fontWeight={"semibold"}
-        px={4}
-        color={"purple.600"}
-        display={{ base: "none", md: "inline-flex" }}
+        textAlign="center"
+        color={"purple.500"}
+        fontFamily={'"Kumar One", serif'}
+        fontWeight="500"
+        letterSpacing={3}
+        display={{ base: "none", md: "block" }}
+        maxW="110px"
       >
         Game Vault
       </Text>
