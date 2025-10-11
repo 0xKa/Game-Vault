@@ -8,11 +8,15 @@ interface FiltersContainerProps {
 const FiltersContainer = ({ children }: FiltersContainerProps) => {
   return (
     <Stack
-      direction={{ base: "column", lg: "row" }} // Box-like on mobile, HStack-like on desktop
-      width="50vw"
+      direction={{ base: "column", lg: "row" }}
+      w={{ base: "100%", lg: "50vw" }}
       gap={3}
       mb={-3}
-      ml={10}
+      mx={{ base: "auto", lg: 0 }}
+      ml={{ base: 0, lg: 10 }}
+      px={{ base: 10, lg: 0 }}
+      alignSelf={{ base: "center", lg: "flex-start" }}
+      alignItems={{ base: "center", lg: "stretch" }}
     >
       {children}
     </Stack>
