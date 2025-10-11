@@ -80,6 +80,7 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
       </Select.Root>
 
       <SortOrderSelector
+        sortOption={selectedSort || "relevance"}
         value={sortOrder}
         onSelectSortOrder={(order) => {
           setSortOrder(order);

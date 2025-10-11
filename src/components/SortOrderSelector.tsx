@@ -2,11 +2,13 @@ import { Button, Menu, Portal } from "@chakra-ui/react";
 import { HiSortAscending } from "react-icons/hi";
 
 interface SortOrderSelectorProps {
+  sortOption: string;
   value: "asc" | "desc";
   onSelectSortOrder: (order: "asc" | "desc") => void;
 }
 
 const SortOrderSelector = ({
+  sortOption,
   value,
   onSelectSortOrder,
 }: SortOrderSelectorProps) => {
@@ -32,7 +34,11 @@ const SortOrderSelector = ({
               }
             >
               {items.map((item) => (
-                <Menu.RadioItem key={item.value} value={item.value}>
+                <Menu.RadioItem
+                  disabled={sortOption === "relevance"}
+                  key={item.value}
+                  value={item.value}
+                >
                   {item.label}
                   <Menu.ItemIndicator />
                 </Menu.RadioItem>
