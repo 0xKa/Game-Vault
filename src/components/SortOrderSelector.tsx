@@ -1,12 +1,18 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
-import { useState } from "react";
 import { HiSortAscending } from "react-icons/hi";
 
-const SortOrderSelector = () => {
-  const [value, setValue] = useState("asc");
+interface SortOrderSelectorProps {
+  value: "asc" | "desc";
+  onSelectSortOrder: (order: "asc" | "desc") => void;
+}
+
+const SortOrderSelector = ({
+  value,
+  onSelectSortOrder,
+}: SortOrderSelectorProps) => {
   const items = [
-    { label: "Ascending", value: "asc" },
-    { label: "Descending", value: "desc" },
+    { label: "Ascending", value: "asc" as const },
+    { label: "Descending", value: "desc" as const },
   ];
 
   return (
@@ -21,7 +27,9 @@ const SortOrderSelector = () => {
           <Menu.Content minW="10rem">
             <Menu.RadioItemGroup
               value={value}
-              onValueChange={(e) => setValue(e.value)}
+              onValueChange={(e) =>
+                onSelectSortOrder(e.value as "asc" | "desc")
+              }
             >
               {items.map((item) => (
                 <Menu.RadioItem key={item.value} value={item.value}>

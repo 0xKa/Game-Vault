@@ -7,7 +7,6 @@ import { useState } from "react";
 import type { Platform, Genre } from "./types";
 import PlatformSelector from "./components/PlatformSelector";
 import FiltersContainer from "./components/FiltersContainer";
-import SortOrderSelector from "./components/SortOrderSelector";
 import SortSelector from "./components/SortSelector";
 
 export interface GameQuery {
@@ -56,8 +55,6 @@ function App() {
               setGameQuery({ ...gameQuery, sortOption: option })
             }
           />
-
-          <SortOrderSelector />
         </FiltersContainer>
         <GameGrid key={gameQuery.genre?.id ?? "all"} gameQuery={gameQuery} />
       </GridItem>
