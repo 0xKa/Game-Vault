@@ -7,7 +7,10 @@ interface PlatformSelectorProps {
   onSelectPlatform: (platform: Platform | null) => void;
 }
 
-const PlatformSelector = ({ onSelectPlatform }: PlatformSelectorProps) => {
+const PlatformSelector = ({
+  onSelectPlatform,
+  selectedPlatform,
+}: PlatformSelectorProps) => {
   const { data: platforms, error, isLoading } = usePlatforms();
 
   if (isLoading)
@@ -32,13 +35,14 @@ const PlatformSelector = ({ onSelectPlatform }: PlatformSelectorProps) => {
       disabled={!!error || !platforms}
       collection={platformsList}
       size="sm"
+      value={selectedPlatform ? [selectedPlatform.slug] : undefined}
     >
       <Select.HiddenSelect />
       {/* <Select.Label>Select Platform</Select.Label> */}
 
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Select platform" />
+          <Select.ValueText placeholder={"Select platform"} />
         </Select.Trigger>
 
         <Select.IndicatorGroup>

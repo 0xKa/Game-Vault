@@ -13,6 +13,7 @@ import SortSelector from "./components/SortSelector";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOption: string;
 }
 
 function App() {
@@ -49,7 +50,12 @@ function App() {
             }
           />
 
-          <SortSelector />
+          <SortSelector
+            selectedSort={gameQuery.sortOption}
+            OnSortSelect={(option) =>
+              setGameQuery({ ...gameQuery, sortOption: option })
+            }
+          />
 
           <SortOrderSelector />
         </FiltersContainer>
