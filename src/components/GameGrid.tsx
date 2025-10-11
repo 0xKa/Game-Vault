@@ -13,6 +13,7 @@ interface GameGridProps {
 const GameGrid = ({ gameQuery }: GameGridProps) => {
   const { data: games, error, isLoading } = useGames(gameQuery);
   const gridSkeletons = [1, 2, 3, 4, 5, 6, 7, 8];
+  // console.log(games);
 
   return (
     <div>

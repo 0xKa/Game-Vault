@@ -4,14 +4,13 @@ import PlatformIconList from "./PlatformIconList";
 import MetaCriticScore from "./MetaCriticScore";
 import getCroppedImageUrl from "@/services/imageCropUrl";
 import noImagePlaceholder from "@/assets/no-image.svg";
+import RatingEmoji from "./RatingEmoji";
 
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
-  // const iconMax = useBreakpointValue<number>({ base: 7, md: 7, lg: 4, xl: 7 }) ?? 5;   // how many icons to show per grid breakpoint
-
   return (
     <Card.Root display="flex" flexDir="column" h="100%" shadow="lg">
       <Box borderTopRadius={5} overflow="hidden">
@@ -41,9 +40,14 @@ const GameCard = ({ game }: Props) => {
       </Card.Body>
 
       <Card.Footer flex="1" display="flex" alignItems="center" px={3} pb={5}>
-        <Card.Title fontSize="2xl" title={game.name}>
-          {game.name}
-        </Card.Title>
+        <Box flex="1" minW={0}>
+          <Card.Title fontSize="2xl" title={game.name}>
+            {game.name}
+          </Card.Title>
+        </Box>
+        <Box ml="auto">
+          <RatingEmoji rating={game.rating_top} />
+        </Box>
       </Card.Footer>
     </Card.Root>
   );
