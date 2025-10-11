@@ -3,6 +3,7 @@ import { Box, Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import MetaCriticScore from "./MetaCriticScore";
 import getCroppedImageUrl from "@/services/imageCropUrl";
+import noImagePlaceholder from "@/assets/no-image.svg";
 
 interface Props {
   game: Game;
@@ -15,7 +16,11 @@ const GameCard = ({ game }: Props) => {
     <Card.Root display="flex" flexDir="column" h="100%" shadow="lg">
       <Box borderTopRadius={5} overflow="hidden">
         <Image
-          src={getCroppedImageUrl(game.background_image, 600, 400)}
+          src={
+            game.background_image
+              ? getCroppedImageUrl(game.background_image, 600, 400)
+              : noImagePlaceholder
+          }
           alt={game.name}
           objectFit="cover"
           height={200}
