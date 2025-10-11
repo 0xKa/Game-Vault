@@ -1,6 +1,14 @@
 import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/imageCropUrl";
-import { HStack, List, Image, Spinner, Link, Box } from "@chakra-ui/react";
+import {
+  HStack,
+  List,
+  Image,
+  Spinner,
+  Link,
+  Box,
+  Heading,
+} from "@chakra-ui/react";
 import ErrorMessage from "./ErrorMessage";
 import type { Genre } from "@/types";
 
@@ -15,6 +23,7 @@ const LINK_SELECTED_STYLE = {
   colorPalette: "purple" as const,
   textDecorationColor: "purple" as const,
   variant: "underline" as const,
+  fontSize: "lg" as const,
 };
 const LINK_DEFAULT_STYLE = {
   fontFamily: "Kumar One" as const,
@@ -45,12 +54,18 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
         <HStack {...ROW_PROPS}>
           <Link
             onClick={() => onSelectGenre?.(null)}
-            fontSize="lg"
             {...(selectedId === null
               ? LINK_SELECTED_STYLE
               : LINK_DEFAULT_STYLE)}
           >
-            All
+            <Heading
+              {...(selectedId === null
+                ? LINK_SELECTED_STYLE
+                : LINK_DEFAULT_STYLE)}
+              fontSize="xl"
+            >
+              All Genres
+            </Heading>
           </Link>
         </HStack>
       </List.Item>
@@ -65,10 +80,10 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                 alt={genre.name}
                 boxSize="32px"
                 borderRadius={8}
+                objectFit={"cover"}
               />
               <Link
                 onClick={() => onSelectGenre?.(genre)}
-                fontSize="lg"
                 {...(isSelected ? LINK_SELECTED_STYLE : LINK_DEFAULT_STYLE)}
               >
                 {genre.name}
