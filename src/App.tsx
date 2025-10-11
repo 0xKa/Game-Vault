@@ -13,6 +13,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOption: string;
+  searchQuery?: string;
 }
 
 function App() {
@@ -27,7 +28,11 @@ function App() {
       templateColumns={{ base: "1fr", lg: "180px 1fr" }} // sidebar will be 180px wide on large screens
     >
       <GridItem area={"nav"}>
-        <NavBar />
+        <NavBar
+          onSearch={(searchQuery) =>
+            setGameQuery({ ...gameQuery, searchQuery: searchQuery })
+          }
+        />
       </GridItem>
 
       <GridItem area={"aside"} display={{ base: "none", lg: "block" }}>

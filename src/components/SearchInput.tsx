@@ -1,8 +1,12 @@
-import { Input, InputGroup, Kbd } from "@chakra-ui/react";
+import { Box, Input, InputGroup, Kbd } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 
-const SearchInput = () => {
+interface SearchInputProps {
+  onSearch: (searchQuery: string) => void;
+}
+
+const SearchInput = ({ onSearch }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -18,17 +22,32 @@ const SearchInput = () => {
   }, []);
 
   return (
-    <InputGroup
-      flex="1"
-      startElement={<LuSearch />}
-      endElement={
-        <Kbd display={{ base: "none", md: "inline-flex" }} whiteSpace="nowrap">
-          Ctrl + K
-        </Kbd>
-      }
-    >
-      <Input ref={inputRef} placeholder="Search Games..." borderRadius={10} />
-    </InputGroup>
+    <Box flex="1">
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (inputRef.current) onSearch(inputRef.current.value);
+        }}
+      >
+        <InputGroup
+          startElement={<LuSearch />}
+          endElement={
+            <Kbd
+              display={{ base: "none", md: "inline-flex" }}
+              whiteSpace="nowrap"
+            >
+              Ctrl + K
+            </Kbd>
+          }
+        >
+          <Input
+            ref={inputRef}
+            placeholder="Search Games..."
+            borderRadius={10}
+          />
+        </InputGroup>
+      </form>
+    </Box>
   );
 };
 
