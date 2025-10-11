@@ -28,14 +28,8 @@ const GameCard = ({ game }: Props) => {
         />
       </Box>
 
-      <Box flex="1" display="flex" alignItems="center" px={3} py={5}>
-        <Card.Title fontSize="2xl" title={game.name}>
-          {game.name}
-        </Card.Title>
-      </Box>
-
-      <Card.Footer mt="auto" px={0} py={0}>
-        <HStack justify="space-between" align="center" w="100%" px={4}>
+      <Card.Body mt="auto" px={0} py={0}>
+        <HStack justify="space-between" align="center" w="100%" px={4} mt={3}>
           <Box flex="1" minW={0} overflow="hidden">
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
@@ -44,6 +38,12 @@ const GameCard = ({ game }: Props) => {
           </Box>
           <MetaCriticScore score={game.metacritic} />
         </HStack>
+      </Card.Body>
+
+      <Card.Footer flex="1" display="flex" alignItems="center" px={3} pb={5}>
+        <Card.Title fontSize="2xl" title={game.name}>
+          {game.name}
+        </Card.Title>
       </Card.Footer>
     </Card.Root>
   );
