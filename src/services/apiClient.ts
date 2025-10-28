@@ -7,7 +7,7 @@ export interface RawgApiFetchResponse<T> {
 
 const API_BASE_URL = "https://api.rawg.io/api/";
 
-const apiService = axios.create({
+const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
@@ -17,4 +17,4 @@ const apiService = axios.create({
   },
 });
 
-export default apiService;
+export default apiClient;

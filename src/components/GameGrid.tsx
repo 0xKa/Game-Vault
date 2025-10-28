@@ -29,7 +29,7 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))
-        : games.map((game) => (
+        : games?.map((game) => (
             <GameCardContainer key={game.id}>
               <GameCard game={game} />
             </GameCardContainer>

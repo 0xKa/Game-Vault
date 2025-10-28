@@ -1,7 +1,7 @@
 import type { Game } from "@/types";
 import type { GameQuery } from "@/App";
 import { useQuery } from "@tanstack/react-query";
-import apiService, { type RawgApiFetchResponse } from "@/services/apiClient";
+import apiClient, { type RawgApiFetchResponse } from "@/services/apiClient";
 
 const useGames = (gameQuery?: GameQuery) => {
   const params = {
@@ -18,7 +18,7 @@ const useGames = (gameQuery?: GameQuery) => {
   return useQuery<Game[]>({
     queryKey: hasParams ? ["games", params] : ["games"],
     queryFn: () =>
-      apiService
+      apiClient
         .get<RawgApiFetchResponse<Game>>("/games", {
           params: {
             genres: gameQuery?.genre?.id,
