@@ -1,16 +1,17 @@
 import type { Genre } from "@/types";
-import useData from "./useData";
-import genres from "@/data/genres-static";
-
-// uncomment the line below to fetch from the static data
-// const useGenres = () => ({ data: genres, isLoading: false, error: null }); // for loading static data
+import staticGenres from "@/data/genres-static";
+import { useQuery } from "@tanstack/react-query";
+import apiService, { type RawgApiFetchResponse } from "@/services/apiClient";
 
 const useGenres = () =>
-  useData<Genre>({
-    key: ["genres"],
-    endpoint: "/genres",
+  useQuery<Genre[]>({
+    queryKey: ["genres"],
+    queryFn: () =>
+      apiService
+        .get<RawgApiFetchResponse<Genre>>("/genres")
+        .then((res) => res.data.results),
     staleTime: 24 * 60 * 60 * 1000,
-    initialData: genres,
+    placeholderData: staticGenres,
   });
 
 export default useGenres;

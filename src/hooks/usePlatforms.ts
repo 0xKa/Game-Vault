@@ -1,16 +1,17 @@
 import type { Platform } from "@/types";
-import useData from "./useData";
-import platforms from "@/data/platforms-static";
+import staticPlatforms from "@/data/platforms-static";
+import { useQuery } from "@tanstack/react-query";
+import apiService, { type RawgApiFetchResponse } from "@/services/apiClient";
 
-// const usePlatforms = () => ({ data: platforms, isLoading: false, error: null }); // for loading static data
-
-// uncomment the line below to fetch from the API
 const usePlatforms = () =>
-  useData<Platform>({
-    key: ["platforms"],
-    endpoint: "/platforms/lists/parents",
+  useQuery<Platform[]>({
+    queryKey: ["platforms"],
+    queryFn: () =>
+      apiService
+        .get<RawgApiFetchResponse<Platform>>("/platforms/lists/parents")
+        .then((res) => res.data.results),
     staleTime: 24 * 60 * 60 * 1000,
-    initialData: platforms,
+    placeholderData: staticPlatforms,
   });
 
 export default usePlatforms;

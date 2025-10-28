@@ -1,5 +1,10 @@
 import axios from "axios";
 
+export interface RawgApiFetchResponse<T> {
+  count: number;
+  results: T[];
+}
+
 const API_BASE_URL = "https://api.rawg.io/api/";
 
 const apiService = axios.create({
