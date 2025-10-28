@@ -3,9 +3,10 @@ import useData from "./useData";
 import type { GameQuery } from "@/App";
 
 const useGames = (gameQuery?: GameQuery) =>
-  useData<Game>(
-    "/games",
-    {
+  useData<Game>({
+    key: ["games"],
+    endpoint: "/games",
+    requestParams: {
       params: {
         genres: gameQuery?.genre?.id,
         parent_platforms: gameQuery?.platform?.id,
@@ -13,7 +14,7 @@ const useGames = (gameQuery?: GameQuery) =>
         search: gameQuery?.searchQuery,
       },
     },
-    [gameQuery]
-  );
+    dependencies: [gameQuery],
+  });
 
 export default useGames;

@@ -1,53 +1,39 @@
 import apiClient from "@/services/apiClient";
-import { CanceledError, type AxiosRequestConfig } from "axios";
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { type AxiosRequestConfig } from "axios";
 
-interface FetchResponse<T> {
+interface RawgApiFetchResponse<T> {
   count: number;
   results: T[];
 }
 
-const useData = <T>(
-  endpoint: string,
-  requestParams?: AxiosRequestConfig,
-  dependencies: any[] = []
-) => {
-  const [data, setData] = useState<T[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+interface useDataParams {
+  key: string[];
+  endpoint: string;
+  requestParams?: AxiosRequestConfig;
+  dependencies?: any[];
+  staleTime?: number;
+}
 
-  useEffect(() => {
-    const controller = new AbortController();
-    let cancelled = false;
+const useData = <T>({
+  key,
+  endpoint,
+  requestParams,
+  staleTime = 5 * 60 * 1000,
+}: useDataParams) => {
+  const fetchData = async () => {
+    const response = await apiClient.get<RawgApiFetchResponse<T>>(
+      endpoint,
+      requestParams
+    );
+    return response.data.results;
+  };
 
-    setIsLoading(true);
-
-    apiClient
-      .get<FetchResponse<T>>(endpoint, {
-        signal: controller.signal,
-        ...requestParams,
-      })
-      .then((res) => {
-        if (cancelled) return;
-        setData(res.data.results);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError || cancelled) return;
-        console.error("Error fetching data:", err);
-        setError("Failed to fetch data. Please try again later.");
-      })
-      .finally(() => {
-        if (cancelled) return;
-        setIsLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-      controller.abort();
-    };
-  }, dependencies);
-
-  return { data, error, isLoading };
+  return useQuery<T[], Error>({
+    queryKey: requestParams ? [...key, requestParams] : key,
+    queryFn: fetchData,
+    staleTime: staleTime,
+  });
 };
 
 export default useData;
