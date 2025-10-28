@@ -7,13 +7,13 @@ interface RawgApiFetchResponse<T> {
   results: T[];
 }
 
-interface useDataParams {
+interface useDataParams<T> {
   key: string[];
   endpoint: string;
   requestParams?: AxiosRequestConfig;
   dependencies?: any[];
   staleTime?: number;
-  initialData?: any[];
+  initialData?: T[];
 }
 
 const useData = <T>({
@@ -22,7 +22,7 @@ const useData = <T>({
   requestParams,
   staleTime = 5 * 60 * 1000,
   initialData,
-}: useDataParams) => {
+}: useDataParams<T>) => {
   const fetchData = async () => {
     const response = await apiClient.get<RawgApiFetchResponse<T>>(
       endpoint,
@@ -35,7 +35,7 @@ const useData = <T>({
     queryKey: requestParams ? [...key, requestParams] : key,
     queryFn: fetchData,
     staleTime: staleTime,
-    placeholderData: initialData, // placeholder data shown while loading, we can use initialData instead of placeholderData if we want to cache it
+    placeholderData: initialData,
   });
 };
 

@@ -9,6 +9,7 @@ const usePlatforms = () =>
   useData<Platform>({
     key: ["platforms"],
     endpoint: "/platforms/lists/parents",
+    staleTime: 24 * 60 * 60 * 1000,
     initialData: platforms,
   });
 
