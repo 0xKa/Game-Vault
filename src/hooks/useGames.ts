@@ -2,6 +2,7 @@ import type { Game } from "@/types";
 import type { GameQuery } from "@/App";
 import { useQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
+import { GAMES_QUERY_KEY } from "./queryKeys";
 
 const httpClient = new HttpClient<Game>("/games");
 
@@ -18,7 +19,7 @@ const useGames = (gameQuery?: GameQuery) => {
   );
 
   return useQuery<Game[]>({
-    queryKey: hasParams ? ["games", params] : ["games"],
+    queryKey: hasParams ? [...GAMES_QUERY_KEY, params] : GAMES_QUERY_KEY,
     queryFn: () =>
       httpClient.getAll({
         params: {
