@@ -1,7 +1,9 @@
 import type { Game } from "@/types";
 import type { GameQuery } from "@/App";
 import { useQuery } from "@tanstack/react-query";
-import apiClient, { type RawgApiFetchResponse } from "@/services/apiClient";
+import HttpClient from "@/services/httpClient";
+
+const httpClient = new HttpClient<Game>("/games");
 
 const useGames = (gameQuery?: GameQuery) => {
   const params = {
@@ -18,16 +20,14 @@ const useGames = (gameQuery?: GameQuery) => {
   return useQuery<Game[]>({
     queryKey: hasParams ? ["games", params] : ["games"],
     queryFn: () =>
-      apiClient
-        .get<RawgApiFetchResponse<Game>>("/games", {
-          params: {
-            genres: gameQuery?.genre?.id,
-            parent_platforms: gameQuery?.platform?.id,
-            ordering: gameQuery?.sortOption,
-            search: gameQuery?.searchQuery,
-          },
-        })
-        .then((res) => res.data.results),
+      httpClient.getAll({
+        params: {
+          genres: gameQuery?.genre?.id,
+          parent_platforms: gameQuery?.platform?.id,
+          ordering: gameQuery?.sortOption,
+          search: gameQuery?.searchQuery,
+        },
+      }),
     staleTime: 24 * 60 * 60 * 1000,
   });
 };
