@@ -7,8 +7,8 @@ interface GameHeadingProps {
 
 const GameHeading = ({ gameQuery }: GameHeadingProps) => {
   const heading = `
-    ${gameQuery?.genre?.name || ""}
-    ${gameQuery?.platform?.name || ""} Games
+  ${gameQuery?.platform?.name || ""}
+  ${gameQuery?.genre?.name || ""} Games
     ${
       gameQuery?.sortOption
         ? `- Sorted by ${
