@@ -1,11 +1,12 @@
 import useGames from "@/hooks/useGames";
-import { Button, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import ErrorMessage from "./ErrorMessage";
 import GameCardContainer from "./GameCardContainer";
 import type { GameQuery } from "@/App";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface GameGridProps {
   gameQuery?: GameQuery;
@@ -20,21 +21,20 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
     isFetchingNextPage,
     hasNextPage,
   } = useGames(gameQuery);
-  const gridSkeletons = [1, 2, 3, 4, 5, 6, 7, 8];
-  console.log(games);
+  // console.log(games);
 
   if (error) return <ErrorMessage message="Error loading games!" />;
 
-  const renderSekeletons = () => {
-    return gridSkeletons.map((i) => (
-      <GameCardContainer key={i}>
+  const skeletonKeys = [1, 2, 3, 4, 5, 6, 7, 8];
+  const renderSkeletons = () =>
+    skeletonKeys.map((i) => (
+      <GameCardContainer key={`skeleton-${i}`}>
         <GameCardSkeleton />
       </GameCardContainer>
     ));
-  };
 
-  const renderGames = () => {
-    return games?.pages.map((page, index) => (
+  const renderGames = () =>
+    games?.pages.map((page, index) => (
       <React.Fragment key={index}>
         {page.map((game) => (
           <GameCardContainer key={game.id}>
@@ -43,23 +43,27 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
         ))}
       </React.Fragment>
     ));
-  };
+
+  const fetchedGamesCount =
+    games?.pages.reduce((total, page) => total + page.length, 0) || 0;
 
   return (
-    <SimpleGrid
-      columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
-      gap={8}
-      padding={10}
-      alignItems="stretch"
+    <InfiniteScroll
+      dataLength={fetchedGamesCount}
+      hasMore={!!hasNextPage}
+      next={fetchNextPage}
+      loader={null}
     >
-      {isLoading ? renderSekeletons() : renderGames()}
-
-      {hasNextPage && (
-        <Button variant={"surface"} onClick={() => fetchNextPage()}>
-          {isFetchingNextPage ? "Loading..." : "Load More"}
-        </Button>
-      )}
-    </SimpleGrid>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
+        gap={8}
+        padding={10}
+        alignItems="stretch"
+      >
+        {isLoading ? renderSkeletons() : renderGames()}
+        {isFetchingNextPage && renderSkeletons()}
+      </SimpleGrid>
+    </InfiniteScroll>
   );
 };
 
