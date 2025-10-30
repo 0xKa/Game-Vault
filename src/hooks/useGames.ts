@@ -3,6 +3,7 @@ import type { GameQuery } from "@/App";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
 import { GAMES_QUERY_KEY } from "./queryKeys";
+import ms from "ms";
 
 const httpClient = new HttpClient<Game>("/games");
 
@@ -33,7 +34,7 @@ const useGames = (gameQuery?: GameQuery) => {
           page_size: PAGE_SIZE,
         },
       }),
-    staleTime: 24 * 60 * 60 * 1000,
+    staleTime: ms("24 Hours"),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length < PAGE_SIZE ? undefined : allPages.length + 1;
