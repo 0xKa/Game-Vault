@@ -11,9 +11,9 @@ import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  sortOption: string;
+  genre?: Genre;
+  platform?: Platform;
+  sortOption?: string;
   searchQuery?: string;
 }
 
@@ -40,7 +40,7 @@ function App() {
         <GenreList
           selectedGenre={gameQuery.genre}
           onSelectGenre={(genre) => {
-            setGameQuery({ ...gameQuery, genre });
+            setGameQuery({ ...gameQuery, genre: genre || undefined });
             window.scrollTo({ top: 0, behavior: "instant" });
           }}
         />
@@ -52,7 +52,7 @@ function App() {
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
+              setGameQuery({ ...gameQuery, platform: platform || undefined })
             }
           />
 

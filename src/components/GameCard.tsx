@@ -21,9 +21,10 @@ const GameCard = ({ game }: Props) => {
               : noImagePlaceholder
           }
           alt={game.name}
-          objectFit="cover"
           height={200}
           width="100%"
+          objectFit={game.background_image ? "cover" : "contain"}
+          bg={game.background_image ? "transparent" : "blackAlpha.400"}
         />
       </Box>
 
