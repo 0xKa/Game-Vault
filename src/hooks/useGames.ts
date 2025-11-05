@@ -1,15 +1,17 @@
 import type { Game } from "@/types";
-import type { GameQuery } from "@/App";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
 import { GAMES_QUERY_KEY } from "./queryKeys";
 import ms from "ms";
+import useGameQueryStore from "@/stores/gamesStore";
 
 const httpClient = new HttpClient<Game>("/games");
 
 const PAGE_SIZE = 20; // RAWG default
 
-const useGames = (gameQuery?: GameQuery) => {
+const useGames = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+
   const params = {
     genres: gameQuery?.genre?.slug,
     parent_platforms: gameQuery?.platform?.slug,

@@ -10,12 +10,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import ErrorMessage from "./ErrorMessage";
-import type { Genre } from "@/types";
-
-interface GenreListProps {
-  onSelectGenre?: (genre: Genre | null) => void;
-  selectedGenre?: Genre | null;
-}
+import useGameQueryStore from "@/stores/gamesStore";
 
 const LINK_SELECTED_STYLE = {
   fontFamily: "Kumar One" as const,
@@ -34,9 +29,10 @@ const LINK_DEFAULT_STYLE = {
 };
 const ROW_PROPS = { gap: 3 as const, px: 3 as const, py: 2 as const };
 
-const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
+const GenreList = () => {
   const { data: genres = [], error, isLoading } = useGenres();
-  const selectedId = selectedGenre?.id ?? null;
+  const selectedGenre = useGameQueryStore((store) => store.gameQuery.genre);
+  const setSelectedGenre = useGameQueryStore((store) => store.setGenre);
 
   if (error) return <ErrorMessage message="Error loading genres!" />;
 
@@ -53,13 +49,13 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
       <List.Item m={0}>
         <HStack {...ROW_PROPS}>
           <Link
-            onClick={() => onSelectGenre?.(null)}
-            {...(selectedId === null
+            onClick={() => setSelectedGenre?.(undefined)}
+            {...(selectedGenre === undefined
               ? LINK_SELECTED_STYLE
               : LINK_DEFAULT_STYLE)}
           >
             <Heading
-              {...(selectedId === null
+              {...(selectedGenre === undefined
                 ? LINK_SELECTED_STYLE
                 : LINK_DEFAULT_STYLE)}
               fontSize="xl"
@@ -71,7 +67,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
       </List.Item>
 
       {genres.map((genre) => {
-        const isSelected = genre.id === selectedId;
+        const isSelected = genre === selectedGenre;
         return (
           <List.Item key={genre.id} m={0}>
             <HStack {...ROW_PROPS}>
@@ -83,7 +79,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                 objectFit={"cover"}
               />
               <Link
-                onClick={() => onSelectGenre?.(genre)}
+                onClick={() => setSelectedGenre?.(genre)}
                 {...(isSelected ? LINK_SELECTED_STYLE : LINK_DEFAULT_STYLE)}
               >
                 {genre.name}

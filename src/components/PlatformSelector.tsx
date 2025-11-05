@@ -1,17 +1,12 @@
 import usePlatforms from "@/hooks/usePlatforms";
-import type { Platform } from "@/types";
+import useGameQueryStore from "@/stores/gamesStore";
 import { Button, createListCollection, Portal, Select } from "@chakra-ui/react";
 
-interface PlatformSelectorProps {
-  selectedPlatform?: Platform | null;
-  onSelectPlatform: (platform: Platform | null) => void;
-}
-
-const PlatformSelector = ({
-  onSelectPlatform,
-  selectedPlatform,
-}: PlatformSelectorProps) => {
+const PlatformSelector = () => {
   const { data: platforms, error, isLoading } = usePlatforms();
+
+  const selectedPlatform = useGameQueryStore((s) => s.gameQuery.platform);
+  const setSelectedPlatform = useGameQueryStore((s) => s.setPlatform);
 
   if (isLoading)
     return (
@@ -47,7 +42,7 @@ const PlatformSelector = ({
 
         <Select.IndicatorGroup>
           <Select.ClearTrigger
-            onClick={() => onSelectPlatform(null)}
+            onClick={() => setSelectedPlatform(undefined)}
             cursor="pointer"
           />
           <Select.Indicator />
@@ -61,7 +56,7 @@ const PlatformSelector = ({
               <Select.Item
                 item={platform}
                 key={platform.value}
-                onClick={() => onSelectPlatform(platform.data)}
+                onClick={() => setSelectedPlatform(platform.data)}
               >
                 {platform.label}
                 <Select.ItemIndicator />

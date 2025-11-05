@@ -1,15 +1,14 @@
 import { createListCollection, Portal, Select } from "@chakra-ui/react";
 import SortOrderSelector from "./SortOrderSelector";
 import { useMemo, useState } from "react";
+import useGameQueryStore from "@/stores/gamesStore";
 
-interface SortSelectorProps {
-  OnSortSelect: (value: string) => void;
-  selectedSort?: string;
-}
+const SortSelector = () => {
+  const selectedSortOption = useGameQueryStore((s) => s.gameQuery.sortOption);
+  const setSelectedSortOption = useGameQueryStore((s) => s.setSortOption);
 
-const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">(
-    selectedSort?.startsWith("-") ? "desc" : "asc"
+    selectedSortOption?.startsWith("-") ? "desc" : "asc"
   );
 
   const getValue = (sortOption: string) =>
@@ -32,7 +31,7 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
     [sortOrder]
   );
 
-  const currentBase = selectedSort?.replace(/^-/, "") || "relevance";
+  const currentBase = selectedSortOption?.replace(/^-/, "") || "relevance";
 
   return (
     <>
@@ -40,7 +39,7 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
         collection={sortingOptions}
         color="purple.500"
         size="sm"
-        value={selectedSort ? [selectedSort] : undefined}
+        value={selectedSortOption ? [selectedSortOption] : undefined}
       >
         <Select.HiddenSelect />
 
@@ -52,7 +51,7 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
           <Select.IndicatorGroup>
             <Select.ClearTrigger
               cursor="pointer"
-              onClick={() => OnSortSelect("")}
+              onClick={() => setSelectedSortOption("")}
             />
             <Select.Indicator />
           </Select.IndicatorGroup>
@@ -66,7 +65,7 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
                   item={item}
                   key={item.value}
                   onClick={() => {
-                    OnSortSelect(item.value);
+                    setSelectedSortOption(item.value);
                     setSortOrder(item.value.startsWith("-") ? "desc" : "asc");
                   }}
                 >
@@ -80,12 +79,12 @@ const SortSelector = ({ OnSortSelect, selectedSort }: SortSelectorProps) => {
       </Select.Root>
 
       <SortOrderSelector
-        sortOption={selectedSort || "relevance"}
+        sortOption={selectedSortOption || "relevance"}
         value={sortOrder}
         onSelectSortOrder={(order) => {
           setSortOrder(order);
           const next = order === "desc" ? `-${currentBase}` : currentBase;
-          OnSortSelect(next);
+          setSelectedSortOption(next);
         }}
       />
     </>

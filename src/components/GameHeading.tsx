@@ -1,20 +1,20 @@
-import type { GameQuery } from "@/App";
+import useGameQueryStore from "@/stores/gamesStore";
 import { Heading } from "@chakra-ui/react";
 
-interface GameHeadingProps {
-  gameQuery: GameQuery;
-}
+const GameHeading = () => {
+  const genre = useGameQueryStore((s) => s.gameQuery.genre);
+  const platform = useGameQueryStore((s) => s.gameQuery.platform);
+  const sortOption = useGameQueryStore((s) => s.gameQuery.sortOption);
 
-const GameHeading = ({ gameQuery }: GameHeadingProps) => {
   const heading = `
-  ${gameQuery?.platform?.name || ""}
-  ${gameQuery?.genre?.name || ""} Games
+  ${platform?.name || ""}
+  ${genre?.name || ""} Games
     ${
-      gameQuery?.sortOption
+      sortOption
         ? `- Sorted by ${
-            gameQuery.sortOption.startsWith("-")
-              ? gameQuery.sortOption.slice(1) + " (descending)"
-              : gameQuery.sortOption
+            sortOption.startsWith("-")
+              ? sortOption.slice(1) + " (descending)"
+              : sortOption
           }`
         : ""
     }`;

@@ -4,15 +4,10 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import ErrorMessage from "./ErrorMessage";
 import GameCardContainer from "./GameCardContainer";
-import type { GameQuery } from "@/App";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface GameGridProps {
-  gameQuery?: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: GameGridProps) => {
+const GameGrid = () => {
   const {
     data: games,
     error,
@@ -20,7 +15,8 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useGames(gameQuery);
+  } = useGames();
+
   // console.log(games);
 
   if (error) return <ErrorMessage message="Error loading games!" />;

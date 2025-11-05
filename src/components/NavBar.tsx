@@ -4,11 +4,7 @@ import PurpleLogo from "../assets/game-vault-purple-icon.svg";
 import { ColorModeButton, useColorMode } from "./ui/color-mode";
 import SearchInput from "./SearchInput";
 
-interface SearchInputProps {
-  onSearch: (searchQuery: string) => void;
-}
-
-export const NavBar = ({ onSearch }: SearchInputProps) => {
+export const NavBar = () => {
   const { colorMode } = useColorMode();
 
   const renderLogo = () => {
@@ -49,7 +45,7 @@ export const NavBar = ({ onSearch }: SearchInputProps) => {
       >
         Game Vault
       </Text>
-      <SearchInput onSearch={(query) => onSearch(query)} />
+      <SearchInput />
       <ColorModeButton size="xl" p={7} />
     </HStack>
   );
