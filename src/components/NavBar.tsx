@@ -4,7 +4,7 @@ import PurpleLogo from "../assets/game-vault-purple-icon.svg";
 import { ColorModeButton, useColorMode } from "./ui/color-mode";
 import SearchInput from "./SearchInput";
 
-export const NavBar = () => {
+const NavBar = () => {
   const { colorMode } = useColorMode();
 
   const renderLogo = () => {
@@ -50,3 +50,5 @@ export const NavBar = () => {
     </HStack>
   );
 };
+
+export default NavBar;
