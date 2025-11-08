@@ -1,8 +1,9 @@
 import useGameDetails from "@/hooks/useGameDetails";
-import { Heading, Text } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import TextOverlaySpinner from "../TextOverlaySpinner";
+import ExpandableText from "../ExpandableText";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
@@ -20,7 +21,7 @@ const GameDetailPage = () => {
   return (
     <>
       <Heading as="h1">{game.name}</Heading>
-      <Text>{game.description_raw}</Text>
+      <ExpandableText limit={1100}>{game.description_raw}</ExpandableText>
     </>
   );
 };
