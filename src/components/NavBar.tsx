@@ -3,6 +3,7 @@ import BlackLogo from "../assets/game-vault-black-icon.svg";
 import PurpleLogo from "../assets/game-vault-purple-icon.svg";
 import { ColorModeButton, useColorMode } from "./ui/color-mode";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const { colorMode } = useColorMode();
@@ -27,13 +28,13 @@ const NavBar = () => {
         boxSize="60px"
         display="grid"
         placeItems="center"
-        cursor="grabbing"
         border="1px solid"
         borderRadius={10}
         color="purple.700"
       >
-        {renderLogo()}
+        <Link to="/">{renderLogo()}</Link>
       </Box>
+
       <Text
         textAlign="center"
         color={"purple.500"}
@@ -43,7 +44,7 @@ const NavBar = () => {
         display={{ base: "none", md: "block" }}
         maxW="110px"
       >
-        Game Vault
+        <Link to="/">Game Vault</Link>
       </Text>
       <SearchInput />
       <ColorModeButton size="xl" p={7} />

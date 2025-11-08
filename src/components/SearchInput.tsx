@@ -1,11 +1,17 @@
 import useGameQueryStore from "@/stores/gamesStore";
 import { Box, Input, InputGroup, Kbd } from "@chakra-ui/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LuSearch } from "react-icons/lu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement>(null);
   const setSearchText = useGameQueryStore((s) => s.setSearchText);
+  const storedSearch = useGameQueryStore((s) => s.gameQuery.searchQuery); // current committed search
+  const [draft, setDraft] = useState(storedSearch || ""); // local (not committed yet)
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -24,7 +30,8 @@ const SearchInput = () => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (inputRef.current) setSearchText(inputRef.current.value);
+          setSearchText(draft); // commit draft
+          if (location.pathname !== "/") navigate("/");
         }}
       >
         <InputGroup
@@ -42,6 +49,8 @@ const SearchInput = () => {
             ref={inputRef}
             placeholder="Search Games..."
             borderRadius={10}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)} // local only
           />
         </InputGroup>
       </form>
