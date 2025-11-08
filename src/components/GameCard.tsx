@@ -12,23 +12,33 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card.Root display="flex" flexDir="column" h="100%" shadow="lg">
-      <Box borderTopRadius={5} overflow="hidden">
-        <Image
-          src={
-            game.background_image
-              ? getCroppedImageUrl(game.background_image, 600, 400)
-              : noImagePlaceholder
-          }
-          alt={game.name}
-          height={200}
-          width="100%"
-          objectFit={game.background_image ? "cover" : "contain"}
-          bg={game.background_image ? "transparent" : "blackAlpha.400"}
-        />
-      </Box>
-
+    <Card.Root
+      display="flex"
+      flexDir="column"
+      h="100%"
+      shadow="lg"
+      transition="all 0.3s ease"
+      _hover={{
+        transform: "scale(1.05)",
+        boxShadow: "xl",
+      }}
+    >
       <Card.Body mt="auto" px={0} py={0}>
+        <Box borderTopRadius={5} overflow="hidden">
+          <Image
+            src={
+              game.background_image
+                ? getCroppedImageUrl(game.background_image, 600, 400)
+                : noImagePlaceholder
+            }
+            alt={game.name}
+            height={200}
+            width="100%"
+            objectFit={game.background_image ? "cover" : "contain"}
+            bg={game.background_image ? "transparent" : "blackAlpha.400"}
+          />
+        </Box>
+
         <HStack justify="space-between" align="center" w="100%" px={4} mt={3}>
           <Box flex="1" minW={0} overflow="hidden">
             <PlatformIconList
