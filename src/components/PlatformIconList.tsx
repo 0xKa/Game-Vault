@@ -34,15 +34,15 @@ const PlatformIconList = ({
   platforms,
   maxVisible = 10,
 }: PlatformIconListProps) => {
-  let visible = platforms.slice(0, maxVisible);
-  const remaining = Math.max(platforms.length - visible.length, 0);
+  let visible = platforms?.slice(0, maxVisible) || [];
+  const remaining = Math.max(platforms?.length - visible?.length, 0) || 0;
 
-  if (remaining == 1 && visible.length > 0) {
-    visible = platforms.slice(0, maxVisible + 1);
+  if (remaining == 1 && visible?.length > 0) {
+    visible = platforms?.slice(0, maxVisible + 1);
   }
 
   return (
-    <HStack gap={2} mb={3} title={`${platforms.length} platforms`}>
+    <HStack gap={2} mb={3} title={`${platforms?.length} platforms`}>
       {visible.map((platform) => {
         const IconComp = platformIcons[platform.slug];
         if (!IconComp) return null;

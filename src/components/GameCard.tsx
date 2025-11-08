@@ -32,7 +32,7 @@ const GameCard = ({ game }: Props) => {
         <HStack justify="space-between" align="center" w="100%" px={4} mt={3}>
           <Box flex="1" minW={0} overflow="hidden">
             <PlatformIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
+              platforms={game.parent_platforms?.map((p) => p.platform)}
               maxVisible={4}
             />
           </Box>
