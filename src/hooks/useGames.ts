@@ -1,4 +1,4 @@
-import type { Game } from "@/types";
+import type { Game } from "@/models";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
 import { GAMES_QUERY_KEY } from "./queryKeys";

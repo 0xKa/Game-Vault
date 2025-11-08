@@ -1,4 +1,4 @@
-import type { Game } from "@/types";
+import type { Game } from "@/models";
 import { Box, Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import MetaCriticScore from "./MetaCriticScore";

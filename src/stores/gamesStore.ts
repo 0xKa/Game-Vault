@@ -1,4 +1,4 @@
-import type { Genre, Platform } from "@/types";
+import type { Genre, Platform } from "@/models";
 import { create } from "zustand";
 
 interface GameQuery {

@@ -1,4 +1,4 @@
-import type { Genre } from "@/types";
+import type { Genre } from "@/models";
 import staticGenres from "@/data/genres-static";
 import { useQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";

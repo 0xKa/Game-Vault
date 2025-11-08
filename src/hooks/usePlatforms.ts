@@ -1,4 +1,4 @@
-import type { Platform } from "@/types";
+import type { Platform } from "@/models";
 import staticPlatforms from "@/data/platforms-static";
 import { useQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
