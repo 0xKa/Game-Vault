@@ -15,5 +15,10 @@ class HttpClient<T> {
     );
     return res.data.results;
   }
+
+  async getBySlug(id: number | string) {
+    const res = await apiClient.get<T>(`${this.endpoint}/${id}`);
+    return res.data;
+  }
 }
 export default HttpClient;
