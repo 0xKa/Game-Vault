@@ -1,8 +1,8 @@
 import type { Game } from "@/models";
-import { Text, SimpleGrid } from "@chakra-ui/react";
+import { Text, SimpleGrid, Tag } from "@chakra-ui/react";
 import DefinitionItem from "./DefinitionItem";
-import ExpandableText from "./ExpandableText";
 import MetaCriticScore from "./MetaCriticScore";
+import { FaTags } from "react-icons/fa6";
 
 interface GameAttributesProps {
   game: Game;
@@ -28,16 +28,28 @@ const GameAttributes = ({ game }: GameAttributesProps) => {
         ))}
       </DefinitionItem>
 
+      <DefinitionItem term="Tags">
+        {game.tags.map((tag) => (
+          <Tag.Root
+            key={tag.id}
+            size="sm"
+            colorPalette={"purple"}
+            variant={"outline"}
+            mx={1}
+          >
+            <Tag.StartElement>
+              <FaTags />
+            </Tag.StartElement>
+
+            <Tag.Label>{tag.name}</Tag.Label>
+          </Tag.Root>
+        ))}
+      </DefinitionItem>
+
       <DefinitionItem term="Genres">
         {game.genres.map((genre) => (
           <Text key={genre.id}>{genre.name}</Text>
         ))}
-      </DefinitionItem>
-
-      <DefinitionItem term="Tags">
-        <ExpandableText limit={50}>
-          {game.tags.map((tag) => tag.name).join(", ")}
-        </ExpandableText>
       </DefinitionItem>
     </SimpleGrid>
   );
