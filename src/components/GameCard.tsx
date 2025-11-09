@@ -52,13 +52,20 @@ const GameCard = ({ game }: Props) => {
           <MetaCriticScore score={game.metacritic} />
         </HStack>
       </Card.Body>
-      <Card.Footer flex="1" display="flex" alignItems="center" px={3} pb={5}>
+      <Card.Footer
+        flex="1"
+        display="flex"
+        alignItems="center"
+        px={3}
+        pb={5}
+        pt={1}
+      >
         <Box flex="1" minW={0}>
           <Card.Title fontSize="2xl" title={game.name}>
             <Link to={`/games/${game.slug}`}>{game.name}</Link>
           </Card.Title>
         </Box>
-        <Box ml="auto">
+        <Box ml="auto" mr={1.5}>
           <RatingEmoji rating={game.rating_top} />
         </Box>
       </Card.Footer>

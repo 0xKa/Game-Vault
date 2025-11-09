@@ -15,7 +15,14 @@ const MetaCriticScore = ({ score }: MetaCriticScoreProps) => {
   const displayScore = score ?? "N/A";
 
   return (
-    <Badge fontSize="15px" size="lg" px="4" mb="3" colorPalette={colorPalette}>
+    <Badge
+      fontSize="15px"
+      size="lg"
+      px="4"
+      mb="3"
+      colorPalette={colorPalette}
+      variant={"surface"}
+    >
       {displayScore}
     </Badge>
   );
