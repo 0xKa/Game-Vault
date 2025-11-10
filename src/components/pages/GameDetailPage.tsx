@@ -36,14 +36,9 @@ const GameDetailPage = () => {
           <Heading size="2xl" mb={5}>
             Game Gallery
           </Heading>
-          <GameScreenshotsGrid slug={gameSlug!} />
-        </Box>
 
-        <Box>
-          <Heading size="2xl" mb={5}>
-            Game Trailer
-          </Heading>
           <GameTrailerVideo slug={gameSlug!} />
+          <GameScreenshotsGrid slug={gameSlug!} />
         </Box>
       </SimpleGrid>
     </>

@@ -21,7 +21,7 @@ const GameScreenshotsGrid = ({ slug }: GameScreenshotsGridProps) => {
     <SimpleGrid
       columns={{ base: 1, md: 1, lg: screenshots.length < 2 ? 1 : 2 }}
       gap={2}
-      p={1}
+      p={2}
       bg={"transparent"}
     >
       {screenshots?.map((screenshot) => (

@@ -1,6 +1,6 @@
 import useGameTrailers from "@/hooks/useGameTrailers";
 import ErrorMessage from "./ErrorMessage";
-import { Spinner } from "@chakra-ui/react";
+import { Box, Center, Spinner } from "@chakra-ui/react";
 
 interface GameTrailerVideoProps {
   slug: string;
@@ -12,17 +12,20 @@ const GameTrailerVideo = ({ slug }: GameTrailerVideoProps) => {
   if (isLoading) return <Spinner />;
   else if (error || !trailers)
     return <ErrorMessage message="An Error Occurred When Fetching Trailer" />;
-  else if (trailers.length === 0)
-    return <ErrorMessage message="No Trailer Available for This Game" />;
+  else if (trailers.length === 0) return null;
+  // return <ErrorMessage message="No Trailer Available for This Game" />;
 
   return (
-    <video
-      src={trailers[0].data.max}
-      poster={trailers[0].preview}
-      width={800}
-      controls
-      muted
-    />
+    <Box p={0.5} border="1px solid " borderColor="purple.400">
+      <Center>
+        <video
+          src={trailers[0].data.max}
+          poster={trailers[0].preview}
+          controls
+          muted
+        />
+      </Center>
+    </Box>
   );
 };
 
