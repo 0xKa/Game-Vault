@@ -1,7 +1,7 @@
 import type { Game } from "@/models";
 import { Text, SimpleGrid, Tag } from "@chakra-ui/react";
-import DefinitionItem from "./DefinitionItem";
-import MetaCriticScore from "./MetaCriticScore";
+import DefinitionItem from "../utils/DefinitionItem";
+import MetaCriticScore from "../gameCard/MetaCriticScore";
 import { FaTags } from "react-icons/fa6";
 
 interface GameAttributesProps {

@@ -1,5 +1,5 @@
 import useGameTrailers from "@/hooks/useGameTrailers";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../utils/ErrorMessage";
 import { Box, Center, Spinner } from "@chakra-ui/react";
 
 interface GameTrailerVideoProps {

@@ -1,8 +1,8 @@
-import Exceptional from "../assets/rating/purple-fire.svg";
-import Good from "../assets/rating/purple-like.svg";
-import Meh from "../assets/rating/purple-meh-closed-eye.svg";
-import Poor from "../assets/rating/purple-dislike.svg";
-import Awful from "../assets/rating/purple-trash-bin.svg";
+import Exceptional from "../../assets/rating/purple-fire.svg";
+import Good from "../../assets/rating/purple-like.svg";
+import Meh from "../../assets/rating/purple-meh-closed-eye.svg";
+import Poor from "../../assets/rating/purple-dislike.svg";
+import Awful from "../../assets/rating/purple-trash-bin.svg";
 import { Image, type ImageProps } from "@chakra-ui/react";
 
 interface RatingEmojiProps {

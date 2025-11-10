@@ -1,10 +1,10 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import FiltersContainer from "../FiltersContainer";
-import GameGrid from "../GameGrid";
-import GameHeading from "../GameHeading";
-import GenreList from "../GenreList";
-import PlatformSelector from "../PlatformSelector";
-import SortSelector from "../SortSelector";
+import FiltersContainer from "../components/filters/FiltersContainer";
+import GameGrid from "../components/homePage/GameGrid";
+import GameHeading from "../components/filters/GameHeading";
+import GenreList from "../components/homePage/GenreList";
+import PlatformSelector from "../components/filters/PlatformSelector";
+import SortSelector from "../components/filters/SortSelector";
 
 const HomePage = () => {
   return (

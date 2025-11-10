@@ -9,7 +9,7 @@ import {
   Box,
   Heading,
 } from "@chakra-ui/react";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../utils/ErrorMessage";
 import useGameQueryStore from "@/stores/gamesStore";
 
 const LINK_SELECTED_STYLE = {

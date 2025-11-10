@@ -1,12 +1,12 @@
 import useGameDetails from "@/hooks/useGameDetails";
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import ErrorMessage from "../ErrorMessage";
-import TextOverlaySpinner from "../TextOverlaySpinner";
-import ExpandableText from "../ExpandableText";
-import GameAttributes from "../GameAttributes";
-import GameTrailerVideo from "../GameTrailerVideo";
-import GameScreenshotsGrid from "../GameScreenshotsGrid";
+import ErrorMessage from "../components/utils/ErrorMessage";
+import TextOverlaySpinner from "../components/utils/TextOverlaySpinner";
+import ExpandableText from "../components/utils/ExpandableText";
+import GameAttributes from "../components/gamePage/GameAttributes";
+import GameTrailerVideo from "../components/gamePage/GameTrailerVideo";
+import GameScreenshotsGrid from "../components/gamePage/GameScreenshotsGrid";
 
 const GameDetailPage = () => {
   const { slug: gameSlug } = useParams();

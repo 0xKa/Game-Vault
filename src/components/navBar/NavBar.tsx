@@ -1,6 +1,6 @@
 import { Box, HStack, Image, Text } from "@chakra-ui/react";
-import PurpleLogo from "../assets/game-vault-purple-icon.svg";
-import { ColorModeButton } from "./ui/color-mode";
+import PurpleLogo from "../../assets/game-vault-purple-icon.svg";
+import { ColorModeButton } from "../ui/color-mode";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 
