@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig } from "axios";
 import apiClient, { type RawgApiFetchResponse } from "./apiClient";
-import type { GameTrailer } from "@/models/gameTrailer";
-import type { GameScreenshot } from "@/models/gameScreenshot";
+import type { GameTrailer } from "@/models";
+import type { GameScreenshot } from "@/models";
 
 class HttpClient<T> {
   protected endpoint: string;

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
 import { GAME_SCREENSHOTS_QUERY_KEY } from "./queryKeys";
 import ms from "ms";
-import type { GameScreenshot } from "@/models/gameScreenshot";
+import type { GameScreenshot } from "@/models";
 
 const httpClient = new HttpClient<GameScreenshot>(`/games`);
 

@@ -1,6 +1,4 @@
-import type { Genre, Platform } from "@/models";
-import type { Publisher } from "./publisher";
-import type { Tag } from "./tag";
+import type { Genre, Platform, Publisher, Tag } from "@/models";
 
 export interface Game {
   id: number;
