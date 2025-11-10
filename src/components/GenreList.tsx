@@ -16,7 +16,7 @@ const LINK_SELECTED_STYLE = {
   fontFamily: "Kumar One" as const,
   fontWeight: "bold" as const,
   colorPalette: "purple" as const,
-  textDecorationColor: "purple" as const,
+  textDecorationColor: "#805AD5" as const,
   variant: "underline" as const,
   fontSize: "lg" as const,
 };

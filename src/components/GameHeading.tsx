@@ -26,7 +26,7 @@ const GameHeading = () => {
       ml={10}
       fontSize="4xl"
       fontFamily="Kumar One"
-      color="purple.500"
+      color="#805AD5"
       lineHeight="50px"
     >
       {heading}
