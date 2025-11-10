@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import HttpClient from "@/services/httpClient";
 import { GAME_TRAILER_QUERY_KEY } from "./queryKeys";
 import ms from "ms";
-import type { GameTrailer } from "../models/GameTrailer";
+import type { GameTrailer } from "@/models/gameTrailer";
 
 const httpClient = new HttpClient<GameTrailer>(`/games`);
 

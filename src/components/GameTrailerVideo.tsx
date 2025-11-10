@@ -3,11 +3,11 @@ import ErrorMessage from "./ErrorMessage";
 import { Spinner } from "@chakra-ui/react";
 
 interface GameTrailerVideoProps {
-  slug: string | undefined;
+  slug: string;
 }
 
 const GameTrailerVideo = ({ slug }: GameTrailerVideoProps) => {
-  const { data: trailers, isLoading, error } = useGameTrailers(slug!);
+  const { data: trailers, isLoading, error } = useGameTrailers(slug);
 
   if (isLoading) return <Spinner />;
   else if (error || !trailers)

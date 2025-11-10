@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from "axios";
 import apiClient, { type RawgApiFetchResponse } from "./apiClient";
-import type { GameTrailer } from "@/models/GameTrailer";
+import type { GameTrailer } from "@/models/gameTrailer";
+import type { GameScreenshot } from "@/models/gameScreenshot";
 
 class HttpClient<T> {
   protected endpoint: string;
@@ -25,6 +26,13 @@ class HttpClient<T> {
   async getGameTrailersBySlug(id: number | string) {
     const res = await apiClient.get<RawgApiFetchResponse<GameTrailer>>(
       `${this.endpoint}/${id}/movies`
+    );
+    return res.data.results;
+  }
+
+  async getGameScreenshotsBySlug(id: number | string) {
+    const res = await apiClient.get<RawgApiFetchResponse<GameScreenshot>>(
+      `${this.endpoint}/${id}/screenshots`
     );
     return res.data.results;
   }
